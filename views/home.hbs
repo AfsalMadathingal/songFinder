@@ -1,0 +1,187 @@
+<link rel="stylesheet" href="/style/style.css">
+
+<div id="record-button" class="container">
+
+  <span class="sun sunshine"></span>
+  <span class="sun"> <h4 class="text">Tap Here <br> To Find Music <br> Around You </h4> </span>
+
+</div>
+
+<div class="spinner-container">
+  <div class="spinner">
+   <div class="spinner">
+    <div class="spinner">
+      <div class="spinner">
+        <div class="spinner">
+            <div class="spinner"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{{!-- <script type="module">
+
+ import { WavRecorder } from 'https://cdn.jsdelivr.net/npm/webm-to-wav-converter/+esm';
+    const startRecordingButton = document.getElementById('record-button');
+    const transcriptDisplay = document.getElementById('transcript');
+    let recordingTimeout;
+
+    function startRecording() {
+     
+      const container = document.getElementById('record-button');
+      container.style.filter = 'blur(10px)';
+      const spinner = document.getElementsByClassName('spinner-container');
+      spinner[0].style.display = 'block';
+      startRecordingButton.disabled = true;
+      startRecordingButton.classList.add('recording');
+
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then((stream) => {
+          const mediaRecorder = new MediaRecorder(stream);
+          const audioChunks = [];
+
+          mediaRecorder.addEventListener('dataavailable', (event) => {
+            audioChunks.push(event.data);
+          });
+
+          mediaRecorder.addEventListener('stop', () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            sendAudioToServer(audioBlob);
+          });
+
+          mediaRecorder.start();
+
+          recordingTimeout = setTimeout(() => {
+            mediaRecorder.stop();
+          }, 10000); // Recording duration, adjust as needed
+        })
+        .catch((error) => {
+          console.error('Error accessing microphone:', error);
+          startRecordingButton.disabled = false;
+          startRecordingButton.classList.remove('recording');
+        });
+    }
+
+    function sendAudioToServer(audioBlob) {
+      if (audioBlob.size === 0) {
+        console.error('Audio Blob is empty.');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('audio', audioBlob);
+
+      fetch('/upload-audio', {
+        method: 'POST',
+        body: formData,
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to upload audio.');
+          }
+          console.log('Audio sent to server successfully');
+          startRecordingButton.disabled = false;
+          startRecordingButton.classList.remove('recording');
+        })
+        .catch((error) => {
+          console.error('Error sending audio to server:', error);
+          startRecordingButton.disabled = false;
+          startRecordingButton.classList.remove('recording');
+        });
+    }
+
+    startRecordingButton.addEventListener('click', startRecording);
+  </script> --}}
+
+<script type="module">
+    import { WavRecorder } from 'https://cdn.jsdelivr.net/npm/webm-to-wav-converter/+esm';
+    import AudioConverter from 'https://cdn.jsdelivr.net/npm/convert-audio/+esm';
+
+    const startRecordingButton = document.getElementById('record-button');
+    const transcriptDisplay = document.getElementById('transcript');
+    let recordingTimeout;
+
+    async function startRecording() {
+        const container = document.getElementById('record-button');
+        container.style.filter = 'blur(10px)';
+        const spinner = document.getElementsByClassName('spinner-container');
+        spinner[0].style.display = 'block';
+        startRecordingButton.disabled = true;
+        startRecordingButton.classList.add('recording');
+
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const mediaRecorder = new MediaRecorder(stream);
+            const audioChunks = [];
+
+            mediaRecorder.addEventListener('dataavailable', (event) => {
+                audioChunks.push(event.data);
+            });
+
+            mediaRecorder.addEventListener('stop', async () => {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                const convertedAudioBlob = await convertAudioToMP3(audioBlob);
+                sendAudioToServer(convertedAudioBlob);
+            });
+
+            mediaRecorder.start();
+
+            recordingTimeout = setTimeout(() => {
+                mediaRecorder.stop();
+            }, 10000); // Recording duration, adjust as needed
+        } catch (error) {
+            console.error('Error accessing microphone:', error);
+            startRecordingButton.disabled = false;
+            startRecordingButton.classList.remove('recording');
+        }
+    }
+
+    async function convertAudioToMP3(audioBlob) {
+        if (audioBlob.size === 0) {
+            console.error('Audio Blob is empty.');
+            return;
+        }
+
+        const convertedAudioDataObj = await AudioConverter.convert(audioBlob, 'mp3');
+        return convertedAudioDataObj.data;
+    }
+
+    function sendAudioToServer(audioBlob) {
+        if (!audioBlob) {
+            console.error('Audio Blob is empty.');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('audio', audioBlob);
+
+        fetch('/upload-audio', {
+            method: 'POST',
+            body: formData,
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Failed to upload audio.');
+            }
+            console.log('Audio sent to server successfully');
+            startRecordingButton.disabled = false;
+            startRecordingButton.classList.remove('recording');
+        })
+        .catch((error) => {
+            console.error('Error sending audio to server:', error);
+            startRecordingButton.disabled = false;
+            startRecordingButton.classList.remove('recording');
+        });
+    }
+
+    startRecordingButton.addEventListener('click', startRecording);
+</script>
+
+
+<script src="/js/script.js"></script>
