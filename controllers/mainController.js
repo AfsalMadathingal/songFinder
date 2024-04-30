@@ -17,7 +17,7 @@ const home = (req, res) => {
 
 const audio = async (req, res) => {
 
-    
+
     console.log('Audio file received:', req.file);
 
     if (!req.file) {
@@ -43,7 +43,7 @@ const audio = async (req, res) => {
         console.log(req.file);
         const apiUrl = 'https://iluvnet.com/tools/wav-to-mp3'
         const requestBody = {
-            url: `https://e307-103-170-228-58.ngrok-free.app/uploads/${req.file.filename}`
+            url: `https://songfinder-bczh.onrender.com/uploads/${req.file.filename}`
         };
         const convertedUrl = await axios.post(apiUrl,requestBody);
         console.log(convertedUrl.data.output);
