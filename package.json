@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.12.10",
+    "axios": "^1.6.8",
     "express": "^4.19.2",
     "ffmpeg-stream": "^0.7.0",
     "fluent-ffmpeg": "^2.1.2",

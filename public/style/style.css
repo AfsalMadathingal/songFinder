@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 body {
@@ -6,92 +5,89 @@ body {
 }
 
 .spinner-container {
-    display: none;
-    width: 150px;
-    height: 150px;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    overflow: hidden;
-  }
-  
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
-    z-index: 9998; /* Make sure the overlay is behind the spinner */
-    pointer-events: none; /* Allow clicking through the overlay */
-  }
-  
-  .spinner {
-    position: absolute;
-    width: calc(100% - 9.9px);
-    height: calc(100% - 9.9px);
-    border: 5px solid transparent;
-    border-radius: 50%;
-    border-top-color: #fff;
-    animation: spin 5s cubic-bezier(0.17, 0.49, 0.96, 0.79) infinite;
-  }
-  
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  display: none;
+  width: 150px;
+  height: 150px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
+  z-index: 9998;
+  /* Make sure the overlay is behind the spinner */
+  pointer-events: none;
+  /* Allow clicking through the overlay */
+}
+
+.spinner {
+  position: absolute;
+  width: calc(100% - 9.9px);
+  height: calc(100% - 9.9px);
+  border: 5px solid transparent;
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 5s cubic-bezier(0.17, 0.49, 0.96, 0.79) infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
 
-
-  
-
- 
-
-  body
-  {
-background-image: url(https://images.fineartamerica.com/images-medium-large-5/queen-collage-taylan-soyturk.jpg), linear-gradient(to bottom, rgba(128, 128, 255, 0.8), rgba(100, 24, 170, 0.5));
-background-size: cover, auto;
-background-position: center;
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-blend-mode: overlay;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
+  to {
+    transform: rotate(360deg);
   }
+}
 
-.navbar 
-{
+
+
+
+
+
+body {
+  background-image: url(https://images.fineartamerica.com/images-medium-large-5/queen-collage-taylan-soyturk.jpg), linear-gradient(to bottom, rgba(128, 128, 255, 0.8), rgba(100, 24, 170, 0.5));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-blend-mode: overlay;
+  margin: 0;
+  height: 100vh;
+}
+
+.navbar {
   background-color: #6f00ff;
   width: 100vh;
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
 }
-  .container {
-    margin-top: auto;
-    margin-bottom: auto;
+
+.container {
+  margin-top: auto;
+  margin-bottom: auto;
   width: 350px;
   height: 350px;
   padding: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
 }
 
-.container:hover
-{
+.container:hover {
   cursor: pointer;
 }
 
@@ -153,12 +149,12 @@ background-blend-mode: overlay;
   z-index: 5;
 }
 
-.text{
+.text {
   margin-top: auto;
   margin-bottom: auto;
-      color: white;
-    padding-top: 100px;
-    font-size: 25px;
+  color: white;
+  padding-top: 100px;
+  font-size: 25px;
 }
 
 .sun {
@@ -200,4 +196,163 @@ background-blend-mode: overlay;
   100% {
     transform: translateX(15px);
   }
+}
+
+.main-div {
+  padding-top: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer {
+  background-color: #1d0341;
+  color: #ffffff;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer__text {
+  padding-right: 10px;
+}
+
+.footer__icons {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.show-on-top {
+  z-index: 9999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card {
+  display: none;
+  --main-color: #fff;
+  --bg-color: #090909;
+  --sub-main-color: #B9B9B9;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 360px;
+  height: 478px;
+  background: var(--bg-color);
+  border-radius: 20px;
+  padding: 30px;
+  z-index: 9999;
+  /* Set a high z-index value */
+  position: absolute;
+  /* Ensure it's positioned absolutely */
+  top: 50%;
+  /* Adjust top position as needed */
+  left: 50%;
+  /* Adjust left position as needed */
+  transform: translate(-50%, -50%);
+}
+
+.card__menu {
+  cursor: pointer;
+}
+
+.card__img {
+  height: 224px;
+  width: 224px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline: auto;
+  background: #131313;
+  border-radius: 100%;
+}
+
+.card__img svg {
+  width: 154px;
+  height: 154px;
+  border-radius: 100%;
+}
+
+.card__title {
+  font-weight: 500;
+  font-size: 28px;
+  color: var(--main-color);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.card__subtitle {
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--sub-main-color);
+  text-align: center;
+  cursor: pointer;
+}
+
+.card__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.card__time {
+  font-weight: 400;
+  font-size: 12px;
+  color: var(--main-color);
+}
+
+.card__timeline {
+  width: 100%;
+  height: 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.card__timeline progress {
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+}
+
+.card__timeline progress::-webkit-progress-bar {
+  background-color: #424242;
+  border-radius: 100px;
+}
+
+.card__timeline progress::-webkit-progress-value {
+  background-color: #fff;
+  border-radius: 100px;
+}
+
+.card__btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.card__btn path {
+  fill: var(--main-color);
+}
+
+.card__btn-play {
+  width: 60px;
+  height: 60px;
+  background: var(--main-color);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card__btn-play path {
+  fill: var(--bg-color);
 }
